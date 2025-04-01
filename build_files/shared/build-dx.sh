@@ -11,7 +11,7 @@ cp /ctx/packages.json /tmp/packages.json
 rsync -rvK /ctx/system_files/dx/ /
 echo "::endgroup::"
 
-# Apply IP Forwarding before installing Docker to prevent messing with LXC networking
+# Apply IP Forwarding before installing Podman to prevent messing with LXC networking
 sysctl -p
 
 # Generate image-info.json (Not Needed?)

@@ -108,7 +108,7 @@ dx-group:
         pkexec usermod -aG $GROUP_ADD $USER
     done
 
-    echo "Reboot system and log back in to use docker, incus-admin, lxd, libvirt."
+    echo "Reboot system and log back in to use podman, incus-admin, lxd, libvirt."
 
 # alias for configure-vfio
 [group('System')]

@@ -60,7 +60,6 @@ From previous `{target}` version `{prev}` there have been the following changes.
 | Name | Version |
 | --- | --- |
 | **Incus** | {pkgrel:incus} |
-| **Docker** | {pkgrel:docker-ce} |
 | **Devpod** | {pkgrel:devpod} |
 
 {changes}
@@ -90,7 +89,6 @@ BLACKLIST_VERSIONS = [
     "gnome-control-center-filesystem",
     "mesa-filesystem",
     "podman",
-    "docker-ce",
     "incus",
     "devpod",
     "nvidia-driver"

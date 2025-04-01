@@ -5,7 +5,7 @@ echo "::group:: ===$(basename "$0")==="
 set -xeou pipefail
 
 # Convince the installer we are in CI
-touch /.dockerenv
+touch /.podmanenv
 
 # Make these so script will work
 mkdir -p /var/home

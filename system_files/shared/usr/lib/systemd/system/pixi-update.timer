@@ -1,5 +1,5 @@
 [Unit]
-Description=Timer for brew update for mutable brew
+Description=Timer for pixi update for mutable pixi
 Wants=network-online.target
 
 [Timer]

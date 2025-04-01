@@ -185,55 +185,55 @@ install-incus:
 install-k8s-dev-tools:
     #!/usr/bin/bash
     echo "Adding Kubernetes command line tools..."
-    brew bundle --file /usr/share/ublue-os/homebrew/kubernetes.Brewfile
+    pixi bundle --file /usr/share/ublue-os/pixi/kubernetes.Pixi.toml
 
-# Set up command-not-found for Homebrew
+# Set up command-not-found for Pixi
 [group('Apps')]
-setup-brew-not-found ACTION="":
+setup-pixi-not-found ACTION="":
     #!/usr/bin/env bash
     source /usr/lib/ujust/ujust.sh
 
     OPTION={{ ACTION }}
     if [ "$OPTION" == "help" ]; then
-        echo "Usage: ujust setup-brew-not-found <option>"
+        echo "Usage: ujust setup-pixi-not-found <option>"
         echo "  <option>: Specify the quick option to skip the prompt"
-        echo "  Use 'enable' to select Enable Brew Not Found"
-        echo "  Use 'disable' to select Disable Brew Not Found"
+        echo "  Use 'enable' to select Enable Pixi Not Found"
+        echo "  Use 'disable' to select Disable Pixi Not Found"
         exit 0
     elif [ "$OPTION" == "" ]; then
-        echo "${bold}Brew command-not-found Setup${normal}"
-        OPTION=$(Choose "Enable Brew command-not-found" "Disable Brew command-not-found")
+        echo "${bold}Pixi command-not-found Setup${normal}"
+        OPTION=$(Choose "Enable Pixi command-not-found" "Disable Pixi command-not-found")
     fi
 
     set -euo pipefail
 
-    BREW_BINARY=/home/linuxbrew/.linuxbrew/bin/brew
-    HOMEBREW_REPOSITORY=${HOMEBREW_REPOSITORY:-$($BREW_BINARY --repository)}
-    if ! $BREW_BINARY -h > /dev/null; then
-      echo "Make sure Homebrew is installed first. Check journalctl -e -u brew-setup.service"
+    PIXI_BINARY=/home/linuxpixi/.pixi/bin/pixi
+    PIXI_REPOSITORY=${PIXI_REPOSITORY:-$($PIXI_BINARY --repository)}
+    if ! $PIXI_BINARY -h > /dev/null; then
+      echo "Make sure Pixi is installed first. Check journalctl -e -u pixi-setup.service"
       exit
     fi
 
     if [[ "${OPTION,,}" =~ ^enable ]]; then
-        $BREW_BINARY tap homebrew/command-not-found
-        pkexec tee /etc/profile.d/brew-command-not-found.sh > /dev/null <<EOF
+        $PIXI_BINARY tap pixi/command-not-found
+        pkexec tee /etc/profile.d/pixi-command-not-found.sh > /dev/null <<EOF
     # Check for interactive bash or zsh and that we haven't already been sourced
-    if [[ -d /home/linuxbrew/.linuxbrew && \$- == *i* && BREW_COMMAND_NOT_FOUND != 1 ]] ; then
-      HB_CNF_HANDLER="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+    if [[ -d /home/linuxpixi/.linuxpixi && \$- == *i* && PIXI_COMMAND_NOT_FOUND != 1 ]] ; then
+      HB_CNF_HANDLER="${PIXI_REPOSITORY}/Library/Taps/pixi/pixi-command-not-found/handler.sh"
       [ -f "\$HB_CNF_HANDLER" ] && source "\$HB_CNF_HANDLER"
-      export BREW_COMMAND_NOT_FOUND=1
+      export PIXI_COMMAND_NOT_FOUND=1
     fi
     EOF
         # Necessary for fish since just having a script sourcing it does not work
-        pkexec ln -sf "${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-command-not-found/handler.fish" /etc/fish/conf.d/brew-cnf-handler.fish
-        echo "Brew command-not-found has been ${b}${green}enabled${n}"
+        pkexec ln -sf "${PIXI_REPOSITORY}/Library/Taps/pixi/pixi-command-not-found/handler.fish" /etc/fish/conf.d/pixi-cnf-handler.fish
+        echo "Pixi command-not-found has been ${b}${green}enabled${n}"
     fi
 
     if [[ "${OPTION,,}" =~ ^disable ]]; then
-        $BREW_BINARY untap homebrew/command-not-found
+        $PIXI_BINARY untap pixi/command-not-found
         FILES_TO_BE_REMOVED=()
-        [ -f /etc/profile.d/brew-command-not-found.sh ] && FILES_TO_BE_REMOVED+=("/etc/profile.d/brew-command-not-found.sh")
-        [ -f /etc/fish/conf.d/brew-command-not-found.fish ] && FILES_TO_BE_REMOVED+=("/etc/fish/conf.d/brew-command-not-found.fish")
+        [ -f /etc/profile.d/pixi-command-not-found.sh ] && FILES_TO_BE_REMOVED+=("/etc/profile.d/pixi-command-not-found.sh")
+        [ -f /etc/fish/conf.d/pixi-command-not-found.fish ] && FILES_TO_BE_REMOVED+=("/etc/fish/conf.d/pixi-command-not-found.fish")
         pkexec rm -f "${FILES_TO_BE_REMOVED[@]}"
-      echo "Brew command-not-found has been ${b}${red}disabled${n}"
+      echo "Pixi command-not-found has been ${b}${red}disabled${n}"
     fi

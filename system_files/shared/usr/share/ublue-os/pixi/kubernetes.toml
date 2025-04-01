@@ -1,0 +1,3 @@
+pixi global install "kubectl"
+pixi global install "k9s"
+pixi global install "kubectx"

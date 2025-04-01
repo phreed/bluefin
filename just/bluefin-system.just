@@ -19,7 +19,7 @@ benchmark:
     pushd $(mktemp -d)
     stress-ng --matrix 0 -t 1m --times
 
-# Configure Bluefin-CLI Terminal Experience with Brew
+# Configure Bluefin-CLI Terminal Experience with Pixi
 [group('System')]
 bluefin-cli:
     @/usr/libexec/ublue-bling

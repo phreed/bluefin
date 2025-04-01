@@ -44,8 +44,8 @@ echo "::endgroup::"
 # Make HWE changes
 /ctx/build_files/base/09-hwe-additions.sh
 
-# Install Brew
-/ctx/build_files/base/10-brew.sh
+# Install Pixi
+/ctx/build_files/base/10-pixi.sh
 
 ## late stage changes
 

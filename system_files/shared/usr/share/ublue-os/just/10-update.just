@@ -15,10 +15,10 @@ update:
     if flatpak remotes | grep -q user; then
         flatpak update --user -y
     fi
-    # Guard Brew if the user does not own brew/doesn't exist
-    if [[ -O /var/home/linuxbrew/.linuxbrew/bin/brew ]]; then
-        # Upgrade will run brew update if needed
-        /var/home/linuxbrew/.linuxbrew/bin/brew upgrade
+    # Guard Pixi if the user does not own pixi/doesn't exist
+    if [[ -O /var/home/linuxpixi/.linuxpixi/bin/pixi ]]; then
+        # Upgrade will run pixi update if needed
+        /var/home/linuxpixi/.linuxpixi/bin/pixi upgrade
     fi
 
 alias auto-update := toggle-updates

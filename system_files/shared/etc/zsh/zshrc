@@ -35,8 +35,8 @@ unset _comp_path
 #
 
 # load pixi autocomplete
-if [ -d "/home/linuxpixi/.linuxpixi/share/zsh/site-functions" ]; then
-    fpath+=(/home/linuxpixi/.linuxpixi/share/zsh/site-functions)
+if [ -d "/home/linuxpixi/.pixi/share/zsh/site-functions" ]; then
+    fpath+=(/home/linuxpixi/.pixi/share/zsh/site-functions)
 fi
 
 #
@@ -196,10 +196,10 @@ colors
 #####################
 
 # pixi 
-if [[ -o interactive ]] && [[ -d /home/linuxpixi/.linuxpixi ]]; then
-  eval "$(/home/linuxpixi/.linuxpixi/bin/pixi shellenv)"
+if [[ -o interactive ]] && [[ -d /home/linuxpixi/.pixi ]]; then
+  eval "$(/home/linuxpixi/.pixi/bin/pixi shellenv)"
   if type pixi &>/dev/null; then
-    if [[ -w /home/linuxpixi/.linuxpixi ]]; then
+    if [[ -w /home/linuxpixi/.pixi ]]; then
       if [[ ! -L "$(pixi --prefix)/share/zsh/site-functions/_pixi" ]]; then
         pixi completions link
       fi

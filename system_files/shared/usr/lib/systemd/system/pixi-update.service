@@ -2,13 +2,13 @@
 Description=Auto update pixi for mutable pixi installs
 After=local-fs.target
 After=network-online.target
-ConditionPathIsSymbolicLink=/home/linuxpixi/.linuxpixi/bin/pixi
+ConditionPathIsSymbolicLink=/home/linuxpixi/.pixi/bin/pixi
 
 [Service]
 # Override the user if different UID/User
 User=1000
 Type=oneshot
-Environment=PIXI_CELLAR=/home/linuxpixi/.linuxpixi/Cellar
-Environment=PIXI_PREFIX=/home/linuxpixi/.linuxpixi
-Environment=PIXI_REPOSITORY=/home/linuxpixi/.linuxpixi/Homepixi
-ExecStart=/usr/bin/bash -c "/home/linuxpixi/.linuxpixi/bin/pixi update"
+Environment=PIXI_CELLAR=/home/linuxpixi/.pixi/Cellar
+Environment=PIXI_PREFIX=/home/linuxpixi/.pixi
+Environment=PIXI_REPOSITORY=/home/linuxpixi/.pixi/pixi
+ExecStart=/usr/bin/bash -c "/home/linuxpixi/.pixi/bin/pixi update"

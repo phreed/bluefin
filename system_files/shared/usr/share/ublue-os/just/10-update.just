@@ -16,9 +16,9 @@ update:
         flatpak update --user -y
     fi
     # Guard Pixi if the user does not own pixi/doesn't exist
-    if [[ -O /var/home/linuxpixi/.linuxpixi/bin/pixi ]]; then
+    if [[ -O /var/home/linuxpixi/.pixi/bin/pixi ]]; then
         # Upgrade will run pixi update if needed
-        /var/home/linuxpixi/.linuxpixi/bin/pixi upgrade
+        /var/home/linuxpixi/.pixi/bin/pixi upgrade
     fi
 
 alias auto-update := toggle-updates

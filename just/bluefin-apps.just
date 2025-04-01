@@ -218,7 +218,7 @@ setup-pixi-not-found ACTION="":
         $PIXI_BINARY tap pixi/command-not-found
         pkexec tee /etc/profile.d/pixi-command-not-found.sh > /dev/null <<EOF
     # Check for interactive bash or zsh and that we haven't already been sourced
-    if [[ -d /home/linuxpixi/.linuxpixi && \$- == *i* && PIXI_COMMAND_NOT_FOUND != 1 ]] ; then
+    if [[ -d /home/linuxpixi/.pixi && \$- == *i* && PIXI_COMMAND_NOT_FOUND != 1 ]] ; then
       HB_CNF_HANDLER="${PIXI_REPOSITORY}/Library/Taps/pixi/pixi-command-not-found/handler.sh"
       [ -f "\$HB_CNF_HANDLER" ] && source "\$HB_CNF_HANDLER"
       export PIXI_COMMAND_NOT_FOUND=1
